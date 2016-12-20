@@ -9,7 +9,9 @@
 			</region>
 			<region height="23.54%" id="optionsReg" left="0.00%" top="74.58%" width="55.15%" zIndex="4">
 			</region>
-			<region height="9.79%" id="qrcodeReg" left="22.01%" top="78.96%" width="6.09%" zIndex="5">
+			<region height="25.00%" id="qrcodeContainerReg" left="0.00%" top="73.00%" width="20.00%" zIndex="4">
+			</region>
+			<region height="15.00%" id="qrcodeReg" left="5.00%" top="79.00%" width="10.00%" zIndex="5">
 			</region>
 			<region height="6.67%" id="titleinfoReg" left="56.21%" top="13.75%" width="43.79%" zIndex="6">
 			</region>
@@ -39,6 +41,8 @@
 			</descriptor>
 			<descriptor id="optionsDesc" region="optionsReg">
 			</descriptor>
+			<descriptor id="qrcodeContainerDesc" region="qrcodeContainerReg">
+			</descriptor>
 			<descriptor id="qrcodeDesc" region="qrcodeReg">
 			</descriptor>
 			<descriptor id="titleinfoDesc" region="titleinfoReg">
@@ -54,6 +58,12 @@
 			<descriptor id="finishbuttonDesc" region="finishbuttonReg">
 			</descriptor>
 			<descriptor id="infobuttonDesc" region="infobuttonReg">
+			</descriptor>
+			<descriptor id="mapa1Desc" region="info2Reg">
+			</descriptor>
+			<descriptor id="mapa2Desc" region="info2Reg">
+			</descriptor>
+			<descriptor id="mapa3Desc" region="info2Reg">
 			</descriptor>
 		</descriptorBase>
 		<connectorBase id="connectorBase1">
@@ -72,6 +82,8 @@
 			<property name="bounds">
 			</property>
 		</media>
+		<media descriptor="qrcodeContainerDesc" id="qrcodeContainer" src="media/tvufma_BOX_QRCODE_HOME.png">
+		</media>
 		<media descriptor="qrcodeDesc" id="qrcode" src="media/qrcode_ufma.jpg">
 		</media>
 		<media descriptor="titleinfoDesc" id="titleinfo" src="media/tvufma_BOX_RIGHTtitle.png">
@@ -88,6 +100,13 @@
 		</media>
 		<media descriptor="infobuttonDesc" id="infobutton" src="media/tvufma_BOTAO_INFO.png">
 		</media>
+		<media descriptor="mapa1Desc" id="mapa1" src="media/tvufma_MAPA_01.png">
+		</media>
+		<media descriptor="mapa2Desc" id="mapa2" src="media/tvufma_MAPA_02.png">
+		</media>
+		<media descriptor="mapa3Desc" id="mapa3" src="media/tvufma_MAPA_03.png">
+		</media>
+		
 		<link id="lMusic" xconnector="conEx#onBeginStart_Delay">
 			<bind component="animation" role="onBegin">
 				<bindParam name="delay" value="1s">
@@ -96,6 +115,10 @@
 			<bind component="background" role="start">
 			</bind>
 			<bind component="logo" role="start">
+			</bind>
+			<bind component="qrcodeContainer" role="start">
+				<bindParam name="delay" value="1s">
+				</bindParam>
 			</bind>
 			<bind component="qrcode" role="start">
 				<bindParam name="delay" value="1s">
@@ -116,9 +139,10 @@
 			<bind component="infobutton" role="start">
 			</bind>
 		</link>
-		<link id="lAdvert" xconnector="conEx#onKeySelectionStopSet_varStart">
-			<bind component="infobutton" role="onSelection">
-				<bindParam name="keyCode" value="RED">
+		
+		<link id="lInfoCreditos" xconnector="conEx#onKeySelectionStopSet_varStart">
+			<bind component="info" role="onSelection">
+				<bindParam name="keyCode" value="INFO">
 				</bindParam>
 			</bind>
 			<bind component="info" role="stop">
@@ -130,9 +154,10 @@
 			<bind component="info2" role="start">
 			</bind>
 		</link>
-		<link id="lBegin" xconnector="conEx#onKeySelectionStopSet_varStart">
-			<bind component="finishbutton" role="onSelection">
-				<bindParam name="keyCode" value="GREEN">
+		
+		<link id="lCreditosInfo" xconnector="conEx#onKeySelectionStopSet_varStart">
+			<bind component="info2" role="onSelection">
+				<bindParam name="keyCode" value="MENU">
 				</bindParam>
 			</bind>
 			<bind component="info2" role="stop">
@@ -144,12 +169,135 @@
 			<bind component="info" role="start">
 			</bind>
 		</link>
+		
+		<link id="lInfoMapa1" xconnector="conEx#onKeySelectionStopSet_varStart">
+			<bind component="info" role="onSelection">
+				<bindParam name="keyCode" value="RED">
+				</bindParam>
+			</bind>
+			<bind component="info" role="stop">
+			</bind>
+			<bind component="animation" interface="bounds" role="set">
+				<bindParam name="varset" value="1.64%,13.75%,53.40%,53.54%">
+				</bindParam>
+			</bind>
+			<bind component="mapa1" role="start">
+			</bind>
+		</link>
+		
+		<link id="lMapa1Info" xconnector="conEx#onKeySelectionStopSet_varStart">
+			<bind component="mapa1" role="onSelection">
+				<bindParam name="keyCode" value="MENU">
+				</bindParam>
+			</bind>
+			<bind component="mapa1" role="stop">
+			</bind>
+			<bind component="animation" interface="bounds" role="set">
+				<bindParam name="varset" value="1.64%,13.75%,53.40%,53.54%">
+				</bindParam>
+			</bind>
+			<bind component="info" role="start">
+			</bind>
+		</link>
+		
+		<link id="lMapa2Info" xconnector="conEx#onKeySelectionStopSet_varStart">
+			<bind component="mapa2" role="onSelection">
+				<bindParam name="keyCode" value="MENU">
+				</bindParam>
+			</bind>
+			<bind component="mapa2" role="stop">
+			</bind>
+			<bind component="animation" interface="bounds" role="set">
+				<bindParam name="varset" value="1.64%,13.75%,53.40%,53.54%">
+				</bindParam>
+			</bind>
+			<bind component="info" role="start">
+			</bind>
+		</link>
+		
+		<link id="lMapa3Info" xconnector="conEx#onKeySelectionStopSet_varStart">
+			<bind component="mapa3" role="onSelection">
+				<bindParam name="keyCode" value="MENU">
+				</bindParam>
+			</bind>
+			<bind component="mapa3" role="stop">
+			</bind>
+			<bind component="animation" interface="bounds" role="set">
+				<bindParam name="varset" value="1.64%,13.75%,53.40%,53.54%">
+				</bindParam>
+			</bind>
+			<bind component="info" role="start">
+			</bind>
+		</link>
+		
+		<link id="lMapa1Mapa2" xconnector="conEx#onKeySelectionStopSet_varStart">
+			<bind component="mapa1" role="onSelection">
+				<bindParam name="keyCode" value="CURSOR_RIGHT">
+				</bindParam>
+			</bind>
+			<bind component="mapa1" role="stop">
+			</bind>
+			<bind component="animation" interface="bounds" role="set">
+				<bindParam name="varset" value="1.64%,13.75%,53.40%,53.54%">
+				</bindParam>
+			</bind>
+			<bind component="mapa2" role="start">
+			</bind>
+		</link>
+		
+		<link id="lMapa2Mapa3" xconnector="conEx#onKeySelectionStopSet_varStart">
+			<bind component="mapa2" role="onSelection">
+				<bindParam name="keyCode" value="CURSOR_RIGHT">
+				</bindParam>
+			</bind>
+			<bind component="mapa2" role="stop">
+			</bind>
+			<bind component="animation" interface="bounds" role="set">
+				<bindParam name="varset" value="1.64%,13.75%,53.40%,53.54%">
+				</bindParam>
+			</bind>
+			<bind component="mapa3" role="start">
+			</bind>
+		</link>
+		
+		<link id="lMapa3Mapa2" xconnector="conEx#onKeySelectionStopSet_varStart">
+			<bind component="mapa3" role="onSelection">
+				<bindParam name="keyCode" value="CURSOR_LEFT">
+				</bindParam>
+			</bind>
+			<bind component="mapa3" role="stop">
+			</bind>
+			<bind component="animation" interface="bounds" role="set">
+				<bindParam name="varset" value="1.64%,13.75%,53.40%,53.54%">
+				</bindParam>
+			</bind>
+			<bind component="mapa2" role="start">
+			</bind>
+		</link>
+		
+		<link id="lMapa2Mapa1" xconnector="conEx#onKeySelectionStopSet_varStart">
+			<bind component="mapa2" role="onSelection">
+				<bindParam name="keyCode" value="CURSOR_LEFT">
+				</bindParam>
+			</bind>
+			<bind component="mapa2" role="stop">
+			</bind>
+			<bind component="animation" interface="bounds" role="set">
+				<bindParam name="varset" value="1.64%,13.75%,53.40%,53.54%">
+				</bindParam>
+			</bind>
+			<bind component="mapa1" role="start">
+			</bind>
+		</link>
+		
 		<link id="lEnd" xconnector="conEx#onEndStop">
 			<bind component="animation" role="onEnd">
 			</bind>
 			<bind component="background" role="stop">
 			</bind>
 			<bind component="logo" role="stop">
+			</bind>
+			<bind component="qrcodeContainer" role="stop">
 			</bind>
 			<bind component="qrcode" role="stop">
 			</bind>
